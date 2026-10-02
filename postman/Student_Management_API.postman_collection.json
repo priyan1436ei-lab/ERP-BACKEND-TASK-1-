@@ -1,0 +1,523 @@
+{
+  "info": {
+    "_postman_id": "7f8b9a2c-9a4d-4e4b-912b-65c192d19280",
+    "name": "Student Management REST API",
+    "description": "Complete REST API collection for Student Management Backend with CRUD operations, search, filters, statistics, department relationships, and comprehensive error test cases.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "studentId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "departmentId",
+      "value": "1",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Departments (Bonus 1)",
+      "item": [
+        {
+          "name": "Create Department",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"departmentCode\": \"IT\",\n  \"departmentName\": \"Information Technology\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/departments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "departments"]
+            },
+            "description": "Creates a new department. Returns 201 Created."
+          }
+        },
+        {
+          "name": "Create Department - CSE",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"departmentCode\": \"CSE\",\n  \"departmentName\": \"Computer Science and Engineering\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/departments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "departments"]
+            }
+          }
+        },
+        {
+          "name": "Get All Departments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/departments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "departments"]
+            }
+          }
+        },
+        {
+          "name": "Get Department By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/departments/{{departmentId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "departments", "{{departmentId}}"]
+            }
+          }
+        },
+        {
+          "name": "Update Department",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"departmentCode\": \"IT\",\n  \"departmentName\": \"Information Technology & Systems\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/departments/{{departmentId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "departments", "{{departmentId}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Students of Department",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/departments/{{departmentId}}/students",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "departments", "{{departmentId}}", "students"]
+            }
+          }
+        },
+        {
+          "name": "Delete Department",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/departments/{{departmentId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "departments", "{{departmentId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Students",
+      "item": [
+        {
+          "name": "Create Student (201 Created)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"registerNo\": \"23IT001\",\n  \"name\": \"Arun Kumar\",\n  \"email\": \"arun@example.com\",\n  \"phone\": \"9876543210\",\n  \"department\": \"IT\",\n  \"year\": 3,\n  \"semester\": 5\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/students",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "students"]
+            }
+          }
+        },
+        {
+          "name": "Create Student 2 - Priya",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"registerNo\": \"23IT002\",\n  \"name\": \"Priya Dharshini\",\n  \"email\": \"priya@example.com\",\n  \"phone\": \"9876543211\",\n  \"department\": \"IT\",\n  \"year\": 3,\n  \"semester\": 5\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/students",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "students"]
+            }
+          }
+        },
+        {
+          "name": "Create Student 3 - Vijay",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"registerNo\": \"23CSE001\",\n  \"name\": \"Vijay Anand\",\n  \"email\": \"vijay@example.com\",\n  \"phone\": \"9876543212\",\n  \"department\": \"CSE\",\n  \"year\": 2,\n  \"semester\": 3\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/students",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "students"]
+            }
+          }
+        },
+        {
+          "name": "Get All Students",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/students",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "students"]
+            }
+          }
+        },
+        {
+          "name": "Filter Students (Combined: department=IT&year=3)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/students?department=IT&year=3",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "students"],
+              "query": [
+                {
+                  "key": "department",
+                  "value": "IT"
+                },
+                {
+                  "key": "year",
+                  "value": "3"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter Students (Combined: department=IT&year=3&semester=5)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/students?department=IT&year=3&semester=5",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "students"],
+              "query": [
+                {
+                  "key": "department",
+                  "value": "IT"
+                },
+                {
+                  "key": "year",
+                  "value": "3"
+                },
+                {
+                  "key": "semester",
+                  "value": "5"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Search Students by Name (?name=Arun)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/students/search?name=Arun",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "students", "search"],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "Arun"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Search Students by Register Number (?registerNo=23IT)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/students/search?registerNo=23IT",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "students", "search"],
+              "query": [
+                {
+                  "key": "registerNo",
+                  "value": "23IT"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Statistics (Bonus 2)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/students/statistics",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "students", "statistics"]
+            }
+          }
+        },
+        {
+          "name": "Get Student By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/students/{{studentId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "students", "{{studentId}}"]
+            }
+          }
+        },
+        {
+          "name": "Update Student",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"registerNo\": \"23IT001\",\n  \"name\": \"Arun Kumar Updated\",\n  \"email\": \"arun.updated@example.com\",\n  \"phone\": \"9876543210\",\n  \"department\": \"IT\",\n  \"year\": 4,\n  \"semester\": 7\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/students/{{studentId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "students", "{{studentId}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Student",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/students/{{studentId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "students", "{{studentId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Error Cases",
+      "item": [
+        {
+          "name": "400 - Validation Failure (Blank Fields & Invalid Phone)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"registerNo\": \"\",\n  \"name\": \"\",\n  \"email\": \"not-an-email\",\n  \"phone\": \"123\",\n  \"department\": \"\",\n  \"year\": 5,\n  \"semester\": 9\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/students",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "students"]
+            }
+          }
+        },
+        {
+          "name": "409 - Duplicate Register Number",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"registerNo\": \"23IT001\",\n  \"name\": \"Duplicate Register Student\",\n  \"email\": \"duplicate@example.com\",\n  \"phone\": \"9876543210\",\n  \"department\": \"IT\",\n  \"year\": 3,\n  \"semester\": 5\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/students",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "students"]
+            }
+          }
+        },
+        {
+          "name": "404 - Student Not Found",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/students/99999",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "students", "99999"]
+            }
+          }
+        },
+        {
+          "name": "404 - Update Non-existent Student",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"registerNo\": \"99UNKNOWN\",\n  \"name\": \"Non Existent\",\n  \"email\": \"nonexistent@example.com\",\n  \"phone\": \"9876543210\",\n  \"department\": \"IT\",\n  \"year\": 1,\n  \"semester\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/students/99999",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "students", "99999"]
+            }
+          }
+        },
+        {
+          "name": "404 - Delete Non-existent Student",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/students/99999",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "students", "99999"]
+            }
+          }
+        },
+        {
+          "name": "409 - Duplicate Department Code",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"departmentCode\": \"IT\",\n  \"departmentName\": \"Information Technology Duplicate\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/departments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "departments"]
+            }
+          }
+        },
+        {
+          "name": "404 - Department Not Found",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/departments/99999",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "departments", "99999"]
+            }
+          }
+        },
+        {
+          "name": "400 - Malformed JSON Body",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"registerNo\": \"23IT001\",\n  \"name\": \"Broken JSON\","
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/students",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "students"]
+            }
+          }
+        },
+        {
+          "name": "400 - Bad Parameter Type",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/students/invalid-id-format",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "students", "invalid-id-format"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
